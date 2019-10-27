@@ -34,11 +34,15 @@ public class background extends AsyncTask <String, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         if ("Login Success".equals(s)) {
+            dialog.setTitle("Login Status");
+            dialog.setMessage("Login Success");
+            dialog.show();
             Intent i = new Intent(context, Dashboard.class);
             context.startActivity(i);
         } else {
-            dialog = new AlertDialog.Builder(context).create();
-            dialog.setTitle("Login Failed");
+            dialog.setTitle("Login Status");
+            dialog.setMessage("Login Failed");
+            dialog.show();
         }
     }
 
