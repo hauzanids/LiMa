@@ -1,22 +1,26 @@
 package com.example.lima;
 
-import java.io.Serializable;
+public class SprintItem{
+    private String mSprint;
+    private String mTanggal;
+    private String mJamMulai;
+    private String mJamAkhir;
 
-public class SprintItem implements Serializable {
-    String tanggal, jam_mulai, jam_akhir;
-
-    public SprintItem(String tanggal, String jam_mulai, String jam_akhir) {
-        this.tanggal = tanggal;
-        this.jam_mulai = jam_mulai;
-        this.jam_akhir = jam_akhir;
+    public SprintItem(String sprint, String tanggal, String jam_mulai, String jam_akhir) {
+        mSprint = sprint;
+        mTanggal = tanggal;
+        mJamMulai = jam_mulai;
+        mJamAkhir = jam_akhir;
     }
+
+    public String getSprint() { return mSprint; }
     public String getTanggal(){
-        return tanggal;
+        return mTanggal;
     }
     public String getJamMulai(){
-        return jam_mulai;
+        return mJamMulai;
     }
     public String getJamAkhir(){
-        return jam_akhir;
+        return mJamAkhir;
     }
 }

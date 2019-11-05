@@ -7,6 +7,13 @@
     android:background="#FFFFFF"
     tools:context=".Absensi">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="155dp"
+        android:background="@android:color/white"/>
+
     <View
         android:id="@+id/rectangle2"
         android:layout_width="match_parent"
@@ -47,9 +54,5 @@
         android:text="Absensi"
         android:textSize="20sp" />
 
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
 </RelativeLayout>
