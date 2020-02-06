@@ -4,19 +4,10 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.EditText;
-
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -29,45 +20,56 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
-public class background extends AsyncTask <String, Void, String> {
-
+public class background1 extends AsyncTask <String, Void, String> {
     AlertDialog dialog;
     Context context;
 
-    public background(Context context){
+    public background1(Context context){
         this.context = context;
     }
 
     @Override
     protected void onPreExecute() {
         dialog = new AlertDialog.Builder(context).create();
-        dialog.setTitle("Login Status");
+        dialog.setTitle("Absen Status");
     }
 
     @Override
     protected void onPostExecute(String s) {
-        if (s.matches(".*\\d.*")){
-            dialog.setTitle("Login Status");
-            dialog.setMessage("Login Mahasiswa Success");
+        if (s.equals("Absen Masuk Berhasil")){
+            dialog.setTitle("Absen Status");
+            dialog.setMessage("Absen Masuk Mahasiswa Berhasil");
             dialog.show();
-            Intent i = new Intent(context, Dashboard.class);
+            Intent i = new Intent(context, Absensi.class);
             i.putExtra("user_id", s);
             context.startActivity(i);
-        }else {
-            dialog.setTitle("Login Status");
-            dialog.setMessage("Login Failed");
+        }else if (s.equals("Absen Pulang Berhasil")){
+            dialog.setTitle("Absen Status");
+            dialog.setMessage("Absen Pulang Mahasiswa Berhasil");
+            dialog.show();
+            Intent i = new Intent(context, Absensi.class);
+            i.putExtra("user_id", s);
+            context.startActivity(i);
+        }else{
+            dialog.setTitle("Absen Status");
+            dialog.setMessage("Absen Failed");
             dialog.show();
         }
     }
 
     @Override
-    protected String doInBackground(String... voids){
+    protected String doInBackground(String... voids) {
         String result = "";
-        String user = voids[0];
-        String pass = voids[1];
+        String p = voids[0];
+        String sid = voids[1];
+        String user_id = voids[2];
 
-        String connstr = "http://10.0.2.2/login.php";
+        String connstr = "http://10.0.2.2/absen.php";
 
         try {
             URL url = new URL(connstr);
@@ -78,8 +80,9 @@ public class background extends AsyncTask <String, Void, String> {
 
             OutputStream ops = http.getOutputStream();
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(ops,"UTF-8"));
-            String data = URLEncoder.encode("user", "UTF-8")+"="+URLEncoder.encode(user,"UTF-8")
-                    +"&&"+URLEncoder.encode("pass", "UTF-8")+"="+URLEncoder.encode(pass,"UTF-8");
+            String data = URLEncoder.encode("p", "UTF-8")+"="+URLEncoder.encode(p,"UTF-8")
+                    +"&&"+URLEncoder.encode("sid", "UTF-8")+"="+URLEncoder.encode(sid,"UTF-8")
+                    +"&&"+URLEncoder.encode("user_id", "UTF-8")+"="+URLEncoder.encode(user_id, "UTF-8");
             writer.write(data);
             writer.flush();
             writer.close();

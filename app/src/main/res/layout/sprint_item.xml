@@ -3,7 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="25dp"
+    android:layout_marginLeft="25dp"
+    android:layout_marginRight="25dp"
+    android:layout_marginTop="12.5dp"
+    android:layout_marginBottom="12.5dp"
     app:cardCornerRadius="25dp">
 
     <LinearLayout
@@ -15,7 +18,7 @@
         <View
             android:id="@+id/rectangle3"
             android:layout_width="match_parent"
-            android:layout_height="225dp"
+            android:layout_height="190dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
@@ -170,23 +173,5 @@
             android:layout_marginTop="140dp"
             android:text="Jam Akhir"
             android:textColor="#000000" />
-
-        <Button
-            android:id="@+id/buttonDetails"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
-            android:layout_alignStart="@+id/rectangle3"
-            android:layout_alignLeft="@+id/rectangle3"
-            android:layout_alignTop="@+id/rectangle3"
-            android:layout_alignEnd="@+id/rectangle3"
-            android:layout_alignRight="@+id/rectangle3"
-            android:layout_alignBottom="@+id/rectangle3"
-            android:layout_marginStart="135dp"
-            android:layout_marginTop="175dp"
-            android:background="@drawable/button3"
-            android:text="Details"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="#000000"
-            android:textSize="14sp" />
 
 </androidx.cardview.widget.CardView>

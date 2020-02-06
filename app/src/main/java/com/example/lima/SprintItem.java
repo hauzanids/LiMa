@@ -6,9 +6,9 @@ public class SprintItem{
     private String mJamMulai;
     private String mJamAkhir;
 
-    public SprintItem(String sprint, String tanggal, String jam_mulai, String jam_akhir) {
-        mSprint = sprint;
-        mTanggal = tanggal;
+    public SprintItem(String sprint_id, String created_at, String jam_mulai, String jam_akhir) {
+        mSprint = sprint_id;
+        mTanggal = created_at;
         mJamMulai = jam_mulai;
         mJamAkhir = jam_akhir;
     }

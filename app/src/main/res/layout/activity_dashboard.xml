@@ -41,11 +41,11 @@
             android:layout_height="170dp" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/button1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button2"
-            android:text="Absensi"
+            android:text="Absen"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
@@ -56,10 +56,11 @@
             android:layout_height="40dp" />
 
         <Button
+            android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button2"
-            android:text="Menu 2"
+            android:text="Info Kehadiran"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:textColor="#FFFFFF"
             android:textSize="20sp"

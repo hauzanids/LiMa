@@ -18,6 +18,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Absensi extends AppCompatActivity {
     private RecyclerView mRecyclerView;
@@ -25,10 +26,14 @@ public class Absensi extends AppCompatActivity {
     private ArrayList<SprintItem> mSprintList;
     private RequestQueue mRequestQueue;
 
+    private String user_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_absensi);
+
+        user_id = getIntent().getStringExtra("user_id");
 
         mRecyclerView = findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
@@ -41,23 +46,27 @@ public class Absensi extends AppCompatActivity {
     }
 
     private void parseJSON(){
-        String url = "https://hauzanids.github.io/sprints.json";
+        String url = "http://10.0.2.2/api/absence_logs.json";
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            JSONArray jsonArray = response.getJSONArray("result");
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject sprints = jsonArray.getJSONObject(i);
+                            JSONArray s = response.getJSONArray("data");
 
-                                String sprint = sprints.getString("sprint");
-                                String tanggal = sprints.getString("tanggal");
-                                String jam_mulai = sprints.getString("jam_mulai");
-                                String jam_akhir = sprints.getString("jam_akhir");
+                            for (int i = 0; i < s.length(); i++) {
+                                JSONObject sprints = s.getJSONObject(i);
+                                String userid = sprints.getString("user_id");
+                                if (userid.equals(user_id)){
+                                    String sprint1 = sprints.getString("sprint_id");
+                                    String sprint = String.format("Sprint %s", sprint1);
+                                    String tanggal = sprints.getString("created_at");
+                                    String jam_mulai = sprints.getString("jam_mulai");
+                                    String jam_akhir = sprints.getString("jam_akhir");
 
-                                mSprintList.add(new SprintItem(sprint, tanggal, jam_mulai, jam_akhir));
+                                    mSprintList.add(new SprintItem(sprint, tanggal, jam_mulai, jam_akhir));
+                                }
                             }
 
                             mSprintAdapter = new SprintAdapter(Absensi.this, mSprintList);
